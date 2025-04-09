@@ -2,7 +2,7 @@ import Banner from "../../component/Slides/Banner";
 
 import MoviePoster from "../../component/MoviePoster";
 import Footer from "../../component/Footer";
-import Navbar from "../../component/Navbar/Navbar";
+import Navbar from "../../component/Navbar/navbar";
 import { useGetPhimUS } from "../../api/homepage";
 // Đường dẫn tương đối
 
