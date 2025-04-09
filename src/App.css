@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black-blur: #141414; 
+}
+body 
+{
+  background-color: #141414 ;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: white !important;
+  
+}
+
