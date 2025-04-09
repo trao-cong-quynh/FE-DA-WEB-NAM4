@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "../component/Navbar/Navbar";
+import Navbar from "../component/Navbar/navbar";
 import Footer from "../component/Footer";
 import Home from "../pages/Home";
 import ShowDetail from "../pages/Home/show";
