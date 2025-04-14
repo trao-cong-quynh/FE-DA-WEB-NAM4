@@ -97,16 +97,13 @@ const Confirmation = () => {
     };
 
     try {
-      const response = await fetch(
-        "https://be-da-web-nam4.onrender.com/api/create-payment",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(paymentData),
-        }
-      );
+      const response = await fetch("http://127.0.0.1:8000/api/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
+      });
 
       const data = await response.json();
       if (data.error) {
@@ -124,7 +121,10 @@ const Confirmation = () => {
       .map(([key, value]) => `${key}:${value}`)
       .join(",");
     const ghe = selectedSeats.map((seat) => seat.ma_ghe).join(",");
-    const formattedDate = new Date(selectedDate).toLocaleDateString("vi-VN");
+    const formattedDate = new Date(selectedDate)
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", "");
 
     if (state) {
       let bookingData;
