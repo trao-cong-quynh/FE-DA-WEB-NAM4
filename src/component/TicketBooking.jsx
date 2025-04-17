@@ -54,7 +54,7 @@ const TicketBooking = () => {
 
   const generateDates = () => {
     const today = new Date();
-    return Array.from({ length: 4 }, (_, i) => {
+    return Array.from({ length: 5 }, (_, i) => {
       const date = new Date();
       date.setDate(today.getDate() + i);
       return {
@@ -117,7 +117,7 @@ const TicketBooking = () => {
       alert("Bạn chưa chọn đủ số lượng ghế");
       return;
     }
-    setStep(2); 
+    setStep(2);
   };
 
   const handleFoodSelect = (items) => {
@@ -207,8 +207,8 @@ const TicketBooking = () => {
                       className={`px-4 py-2  rounded-md text-sm transition-all duration-300 ease-in-out ${
                         selectedShowtime === sc.thoi_gian_bd &&
                         selectedTheater === theater.ma_rap
-                          ? "bg-green-500 text-white" // Màu nền xanh khi chọn
-                          : "bg-gray-200 text-green-500" // Màu nền xám và chữ màu xanh khi chưa chọn
+                          ? "bg-green-500 text-white"
+                          : "bg-gray-200 text-green-500"
                       }`}
                       onClick={() => handleShowtimeSelect(theater, sc)}
                     >

@@ -5,6 +5,10 @@ import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isRapDropdownOpen, setIsRapDropdownOpen] = useState(false);
+  const [isThanhVienDropdownOpen, setIsThanhVienDropdownOpen] = useState(false);
+  const [isCultureplexDropdownOpen, setIsCultureplexDropdownOpen] =
+    useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -12,7 +16,7 @@ const Navbar = () => {
   const isLoggedIn = false; // Sau này thay bằng dữ liệu từ backend
 
   return (
-    <header className="bg-[#FDF7E5] text-black shadow-md">
+    <header className="bg-[#FDF7E5] text-black shadow-md sticky top-0 z-50">
       <div className="w-4/5 mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <div
@@ -31,16 +35,17 @@ const Navbar = () => {
             onMouseLeave={() => setIsDropdownOpen(false)}
           >
             <span className="cursor-pointer hover:text-[#B38B59]">PHIM</span>
+            <div className="absolute left-0 w-full h-4"></div>
             {isDropdownOpen && (
-              <ul className="absolute left-0 mt-2 w-48 max-w-xs bg-[#F5E6C8] rounded-md shadow-lg z-10 text-black">
+              <ul className="absolute left-0 top-full w-48 max-w-xs bg-[#F5E6C8] rounded-md shadow-lg z-10 text-black">
                 <li
-                  className="px-4 py-2 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
                   onClick={() => navigate("/phim-dang-chieu")}
                 >
                   Phim Đang Chiếu
                 </li>
                 <li
-                  className="px-4 py-2 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
                   onClick={() => navigate("/phim-sap-chieu")}
                 >
                   Phim Sắp Chiếu
@@ -49,15 +54,93 @@ const Navbar = () => {
             )}
           </div>
 
-          <a href="#" className="hover:text-[#B38B59]">
-            RẠP CGV
-          </a>
-          <a href="#" className="hover:text-[#B38B59]">
-            THÀNH VIÊN
-          </a>
-          <a href="#" className="hover:text-[#B38B59]">
-            CULTUREPLEX
-          </a>
+          {/* RẠP CGV - Dropdown */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setIsRapDropdownOpen(true)}
+            onMouseLeave={() => setIsRapDropdownOpen(false)}
+          >
+            <span className="cursor-pointer hover:text-[#B38B59]">RẠP CGV</span>
+            <div className="absolute left-0 w-full h-4"></div>
+            {isRapDropdownOpen && (
+              <ul className="absolute left-0 top-full w-48 max-w-xs bg-[#F5E6C8] rounded-md shadow-lg z-10 text-black">
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/tat-ca-rap")}
+                >
+                  Tất cả các rạp
+                </li>
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-dac-biet")}
+                >
+                  Rạp đặc biệt
+                </li>
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-3d")}
+                >
+                  Rạp 3D
+                </li>
+              </ul>
+            )}
+          </div>
+
+          {/* THÀNH VIÊN - Dropdown */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setIsThanhVienDropdownOpen(true)}
+            onMouseLeave={() => setIsThanhVienDropdownOpen(false)}
+          >
+            <span className="cursor-pointer hover:text-[#B38B59]">
+              THÀNH VIÊN
+            </span>
+            <div className="absolute left-0 w-full h-4"></div>
+            {isThanhVienDropdownOpen && (
+              <ul className="absolute left-0 top-full w-48 max-w-xs bg-[#F5E6C8] rounded-md shadow-lg z-10 text-black">
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/tai-khoan-cgv")}
+                >
+                  Tài khoản CGV
+                </li>
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/quyen-loi")}
+                >
+                  Quyền lợi
+                </li>
+              </ul>
+            )}
+          </div>
+
+          {/* CULTUREPLEX - Dropdown */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setIsCultureplexDropdownOpen(true)}
+            onMouseLeave={() => setIsCultureplexDropdownOpen(false)}
+          >
+            <span className="cursor-pointer hover:text-[#B38B59]">
+              CULTUREPLEX
+            </span>
+            <div className="absolute left-0 w-full h-4"></div>
+            {isCultureplexDropdownOpen && (
+              <ul className="absolute left-0 top-full w-48 max-w-xs bg-[#F5E6C8] rounded-md shadow-lg z-10 text-black">
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/quay-online")}
+                >
+                  Quầy online
+                </li>
+                <li
+                  className="px-4 py-3 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-va-thue-rap")}
+                >
+                  Rạp và thuê rạp
+                </li>
+              </ul>
+            )}
+          </div>
         </nav>
 
         {/* Nút đăng nhập / đăng ký / mua vé */}
@@ -76,7 +159,7 @@ const Navbar = () => {
           </button>
           <button
             className="bg-[#D47F19] px-6 py-3 rounded-lg text-lg font-semibold text-white hover:bg-[#B36A14] transition"
-            onClick={() => navigate("/ticket")}
+            onClick={() => navigate("/phim-dang-chieu")}
           >
             MUA VÉ NGAY
           </button>
@@ -154,18 +237,96 @@ const Navbar = () => {
             )}
           </div>
 
-          <a href="#" className="block py-2 hover:text-[#B38B59]">
-            RẠP CGV
-          </a>
-          <a href="#" className="block py-2 hover:text-[#B38B59]">
-            THÀNH VIÊN
-          </a>
-          <a href="#" className="block py-2 hover:text-[#B38B59]">
-            CULTUREPLEX
-          </a>
+          {/* Dropdown RẠP CGV cho mobile */}
+          <div>
+            <button
+              className="w-full text-left py-2 px-6 bg-[#E5C9A8] hover:bg-[#B38B59] hover:text-white flex justify-between items-center"
+              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+            >
+              RẠP CGV
+              <span>{isMobileDropdownOpen ? "▲" : "▼"}</span>
+            </button>
+            {isMobileDropdownOpen && (
+              <ul className="bg-[#D4B89D]">
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/tat-ca-rap")}
+                >
+                  Tất cả các rạp
+                </li>
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-dac-biet")}
+                >
+                  Rạp đặc biệt
+                </li>
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-3d")}
+                >
+                  Rạp 3D
+                </li>
+              </ul>
+            )}
+          </div>
+
+          {/* Dropdown THÀNH VIÊN cho mobile */}
+          <div>
+            <button
+              className="w-full text-left py-2 px-6 bg-[#E5C9A8] hover:bg-[#B38B59] hover:text-white flex justify-between items-center"
+              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+            >
+              THÀNH VIÊN
+              <span>{isMobileDropdownOpen ? "▲" : "▼"}</span>
+            </button>
+            {isMobileDropdownOpen && (
+              <ul className="bg-[#D4B89D]">
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/tai-khoan-cgv")}
+                >
+                  Tài khoản CGV
+                </li>
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/quyen-loi")}
+                >
+                  Quyền lợi
+                </li>
+              </ul>
+            )}
+          </div>
+
+          {/* Dropdown CULTUREPLEX cho mobile */}
+          <div>
+            <button
+              className="w-full text-left py-2 px-6 bg-[#E5C9A8] hover:bg-[#B38B59] hover:text-white flex justify-between items-center"
+              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+            >
+              CULTUREPLEX
+              <span>{isMobileDropdownOpen ? "▲" : "▼"}</span>
+            </button>
+            {isMobileDropdownOpen && (
+              <ul className="bg-[#D4B89D]">
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/quay-online")}
+                >
+                  Quầy online
+                </li>
+                <li
+                  className="py-2 px-6 hover:bg-[#B38B59] hover:text-white cursor-pointer"
+                  onClick={() => navigate("/rap-va-thue-rap")}
+                >
+                  Rạp và thuê rạp
+                </li>
+              </ul>
+            )}
+          </div>
+
           <button
             className="block w-full bg-[#D47F19] py-3 mt-4 text-lg font-semibold text-white hover:bg-[#B36A14] transition"
-            onClick={() => navigate("/ticket")}
+            onClick={() => navigate("/phim-dang-chieu")}
           >
             MUA VÉ NGAY
           </button>

@@ -1,5 +1,4 @@
 import Banner from "../../component/Slides/Banner";
-
 import MoviePoster from "../../component/MoviePoster";
 import Footer from "../../component/Footer";
 import Navbar from "../../component/Navbar/navbar";
@@ -11,11 +10,11 @@ function Home() {
 
   if (!Phims) return <p>Loading...</p>;
   return (
-    <div className="max-w-full">
-      <div className="container mx-auto bg-[#FDF7E5]">
-        <Navbar />
-        <Banner />
-        <h1 className="text-black text-2xl text-center font-bold my-2 bg-[#FDF7E5]">
+    <div className="w-full bg-[#FDF7E5]">
+      <Navbar />
+      <Banner />
+      <div className="container mx-auto px-4">
+        <h1 className="text-black text-2xl text-center font-bold py-8">
           PHIM ĐANG CHIẾU
         </h1>
         <MoviePoster Phims={Phims} />

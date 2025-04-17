@@ -62,11 +62,6 @@ const Footer = () => {
                 <i className="fab fa-zalo"></i>
               </a>
             </div>
-            <img
-              src="https://cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bocongthuong.png"
-              alt="Bộ Công Thương"
-              className="mt-4 w-40"
-            />
           </div>
 
           {/* Cột 4 */}

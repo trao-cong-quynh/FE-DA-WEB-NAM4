@@ -10,6 +10,8 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Confirmation from "../pages/Confirmation";
 import TicketBooking from "../component/TicketBooking";
+import PhimSapChieu from "../pages/Home/PhimSapChieu";
+import PhimDangChieu from "../pages/Home/PhimDangChieu";
 
 // Import Dashboard và Layout
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -120,6 +122,28 @@ const App = () => {
             element={<CreateUsers onAddUser={addUser} />}
           />
         </Route>
+
+        <Route
+          path="/phim-dang-chieu"
+          element={
+            <>
+              <Navbar />
+              <PhimDangChieu />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/phim-sap-chieu"
+          element={
+            <>
+              <Navbar />
+              <PhimSapChieu />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

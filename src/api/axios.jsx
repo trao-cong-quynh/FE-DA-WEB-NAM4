@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://be-da-web-nam4.onrender.com/api";
+const baseURL = import.meta.env.VITE_API_URL;
 const timeout = 20000;
 
 const axiosInstance = axios.create({
