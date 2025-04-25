@@ -27,6 +27,9 @@ import CreateTickets from "../pages/Dashboard/Create/CreateTickets";
 import CreateUsers from "../pages/Dashboard/Create/CreateUsers";
 import CreateMovies from "../pages/Dashboard/Create/CreateMovies";
 
+//vi
+import PrivateRouteAdmin from "../component/PrivateRouteAdmin";
+
 const App = () => {
   const [users, setUsers] = useState([
     { id: 1, name: "Nguyễn Văn A", email: "a@example.com" },
@@ -104,7 +107,14 @@ const App = () => {
         />
 
         {/* Layout riêng cho Dashboard */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRouteAdmin>
+              <DashboardLayout />
+            </PrivateRouteAdmin>
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="movies" element={<ManageMovies />} />
           <Route path="users" element={<ManageUsers users={users} />} />

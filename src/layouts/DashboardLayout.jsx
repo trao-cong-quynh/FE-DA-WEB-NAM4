@@ -12,6 +12,7 @@ import {
   FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
+import Navbar from "../component/Dashboard/Navbar";
 
 const DashboardLayout = () => {
   const [openMenus, setOpenMenus] = useState({
@@ -20,8 +21,6 @@ const DashboardLayout = () => {
     users: false,
     tickets: false,
   });
-
-  const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleMenu = (menu) => {
     setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
@@ -150,39 +149,24 @@ const DashboardLayout = () => {
             <FaCog />
             <Link to="/dashboard/settings">Cấu hình</Link>
           </li>
-        </ul>
-
-        {/* Admin Account */}
-        <div className="relative mt-auto">
-          <div
-            className="flex items-center space-x-2 p-2 cursor-pointer hover:bg-white/10 rounded-md"
-            onClick={() => setShowDropdown(!showDropdown)}
+          <li
+            className="py-2 flex items-center space-x-2 cursor-pointer"
+            onClick={handleLogout}
           >
-            <img
-              src="https://i.pravatar.cc/40"
-              alt="Admin Avatar"
-              className="w-8 h-8 rounded-full"
-            />
-            <span>Admin</span>
-          </div>
-
-          {showDropdown && (
-            <div className="absolute bottom-12 left-0 bg-white text-black shadow-md rounded-lg w-36">
-              <button
-                className="flex items-center justify-start w-full px-4 py-2 hover:bg-gray-100"
-                onClick={handleLogout}
-              >
-                <FaSignOutAlt className="mr-2" /> Đăng xuất
-              </button>
-            </div>
-          )}
-        </div>
+            <FaSignOutAlt />
+            <span>Đăng xuất</span>
+          </li>
+        </ul>
       </aside>
 
       {/* Nội dung chính */}
-      <main className="flex-1 p-6 bg-gray-100">
-        <Outlet />
-      </main>
+      <div className="flex-1 flex flex-col">
+        <Navbar />
+
+        <main className="p-6 bg-gray-100 flex-1 overflow-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };

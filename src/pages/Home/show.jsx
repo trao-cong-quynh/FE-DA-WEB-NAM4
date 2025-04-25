@@ -9,32 +9,8 @@ import { imagePhim } from "../../Utilities/common";
 import { motion } from "framer-motion";
 const ShowDetail = () => {
   const { ma_phim } = useParams();
-  // const apiKey = import.meta.env.VITE_API_KEY;
 
-  // const {
-  //   data: movie,
-  //   loading,
-  //   error,
-  // } = useFetch(
-  //   `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=vi-VN`
-  // );
-
-  // const { data: videos } = useFetch(
-  //   `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}&language=en-US`
-  // );
-
-  // const [isTrailerOpen, setIsTrailerOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-
-  // if (loading) return <p className="text-center text-gray-400">Loading...</p>;
-  // if (error)
-  //   return <p className="text-center text-red-500">Error: {error.message}</p>;
-  // if (!movie)
-  //   return <p className="text-center text-gray-400">No data available.</p>;
-
-  // const trailer = videos?.results?.find(
-  //   (video) => video.type === "Trailer" && video.site === "YouTube"
-  // );
 
   const { data: Phim } = useGetChiTietPhimUS(ma_phim);
   if (!Phim) return <p>Không có dữ liệu phim.</p>;
@@ -98,15 +74,6 @@ const ShowDetail = () => {
               >
                 <Ticket className="mr-2" size={18} /> MUA VÉ
               </button>
-
-              {/* {trailer && (
-                <button
-                  onClick={() => setIsTrailerOpen(true)}
-                  className="bg-gray-800 text-white flex items-center px-4 py-2 rounded-md font-bold hover:bg-gray-900"
-                >
-                  <PlayCircle className="mr-2" size={18} /> Trailer
-                </button>
-              )} */}
             </div>
           </div>
         </div>
@@ -133,25 +100,6 @@ const ShowDetail = () => {
         >
           {isBookingOpen && <TicketBooking />}
         </motion.div>
-
-        {/* {isTrailerOpen && trailer && (
-          <div className="fixed inset-0 bg-[rgba(0,0,0,0.3)] flex items-center justify-center z-50">
-            <div className="bg-black p-4 rounded-lg relative max-w-3xl w-full">
-              <button
-                className="absolute top-2 right-2 text-white text-2xl"
-                onClick={() => setIsTrailerOpen(false)}
-              >
-                &times;
-              </button>
-              <iframe
-                className="w-full h-[400px] md:h-[500px] lg:h-[600px]"
-                src={`https://www.youtube.com/embed/${trailer.key}`}
-                title="Movie Trailer"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        )} */}
       </div>
     </div>
   );

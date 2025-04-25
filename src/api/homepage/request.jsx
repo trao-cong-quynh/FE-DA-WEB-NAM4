@@ -32,9 +32,14 @@ export const getLoaiVeAPI = async () => {
   });
 };
 
-export const getRapSCAPI = async (ma_phim) => {
+export const getRapSCAPI = async (ma_phim, ngay_chieu) => {
+  let url = `${END_POINT.CHITIETPHIM}/${ma_phim}`;
+  if (ngay_chieu) {
+    url += `?ngay_chieu=${ngay_chieu}`;
+  }
+
   return await axios({
-    url: `${END_POINT.CHITIETPHIM}/${ma_phim}`,
+    url: url,
     method: "GET",
   });
 };

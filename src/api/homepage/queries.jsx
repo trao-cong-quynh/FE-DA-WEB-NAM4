@@ -39,10 +39,10 @@ export const useGetLoaiVeUS = (option) => {
   });
 };
 
-export const useGetRapSCUS = (ma_phim, option) => {
+export const useGetRapSCUS = (ma_phim, ngay_chieu, option) => {
   return useQuery({
-    queryKey: ["GetRapSCAPI", ma_phim],
-    queryFn: () => getRapSCAPI(ma_phim),
+    queryKey: ["GetRapSCAPI", ma_phim, ngay_chieu],
+    queryFn: () => getRapSCAPI(ma_phim, ngay_chieu),
     optionsUseQuery,
     ...option,
   });

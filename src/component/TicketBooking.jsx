@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SeatSelection from "./SeatSelection";
 import {
   useGetDSGheUS,
@@ -11,20 +11,24 @@ import FoodAndDrinkSelection from "./FoodAndDrinkSelection";
 
 const TicketBooking = () => {
   const { ma_phim } = useParams();
-  const [selectedDate, setSelectedDate] = useState("19");
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  });
   const [selectedShowtime, setSelectedShowtime] = useState(null);
   const [selectedTheater, setSelectedTheater] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [selectedSc, setSelectedSc] = useState(null);
   const [ticketCounts, setTicketCounts] = useState({});
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedFD, setSelectedFD] = useState([]); // food minh
+  const [selectedFD, setSelectedFD] = useState([]);
+  const [rapsc, setRapsc] = useState([]); // food minh
 
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
   const { data: loaives } = useGetLoaiVeUS();
-  const { data: rapsc } = useGetRapSCUS(ma_phim);
+  const { data: rapscData } = useGetRapSCUS(ma_phim, selectedDate);
   const { data: DSghe } = useGetDSGheUS(selectedRoom);
   const { data: dsDv } = useGetDVAnUongUS();
   const totalTicket = Object.values(ticketCounts).reduce(
@@ -123,6 +127,12 @@ const TicketBooking = () => {
   const handleFoodSelect = (items) => {
     setSelectedFD(items);
   };
+
+  useEffect(() => {
+    if (rapscData) {
+      setRapsc(rapscData);
+    }
+  }, [rapscData]);
   ///
   return (
     <div className="p-6 bg-gray-100 max-w-4xl mx-auto rounded-md shadow-lg">

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { Menu, MenuItem } from "@mui/material";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUserName(user.ho_ten); // hoặc user.ten
+    }
+  }, []);
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -14,31 +22,28 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    console.log("Đăng xuất...");
-    handleCloseMenu();
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
   };
 
   return (
     <nav className="w-full bg-white shadow-md p-4 flex justify-between items-center">
       <h1 className="text-xl font-semibold">Dashboard</h1>
 
-      <div className="relative flex items-center space-x-4 cursor-pointer">
-        <span className="hidden md:block font-medium">Admin</span>
-        <img
-          src="https://i.pravatar.cc/40"
-          alt="Admin Avatar"
-          className="w-10 h-10 rounded-full border-2 border-gray-300"
-          onClick={handleOpenMenu}
-        />
+      <div
+        onClick={handleOpenMenu}
+        className="relative flex items-center space-x-4 cursor-pointer"
+      >
+        <span className="hidden md:block font-medium">{userName}</span>
 
-        {/* Dropdown Menu */}
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleCloseMenu}
         >
           <MenuItem onClick={handleLogout}>
-            <FaSignOutAlt className="mr-2" /> Đăng xuất
+            <FaSignOutAlt className="mr-2" /> Đăng Xuất
           </MenuItem>
         </Menu>
       </div>
