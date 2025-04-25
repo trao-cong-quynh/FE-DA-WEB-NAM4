@@ -1,7 +1,7 @@
 import axiosInstance from "./axios";
 
 export const getPhimDangChieu = () => {
-  return axiosInstance.get("/phim-dang-chieu");
+  return axiosInstance.get("/phim");
 };
 
 export const getPhimSapChieu = () => {
